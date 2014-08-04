@@ -31,7 +31,7 @@ ADD mysqld_charset.cnf /etc/mysql/conf.d/mysqld_charset.cnf
 ADD startup.sh /startup.sh
 
 RUN chmod 755 /*.sh
-RUN /startup.sh
+ONBUILD RUN /startup.sh
 
 # Exposed ENV
 #ENV MYSQL_PASS **Random**
