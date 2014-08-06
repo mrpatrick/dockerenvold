@@ -16,3 +16,4 @@ if [ ! -f /var/lib/mysql/ibdata1 ]; then
 fi
 
 #/usr/bin/mysqld_safe &
+/usr/libexec/mysqld 

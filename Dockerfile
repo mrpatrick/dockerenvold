@@ -28,14 +28,13 @@ RUN echo "NETWORKING=yes" > /etc/sysconfig/network
 # Remove pre-installed database
 RUN rm -rf /var/lib/mysql/*
 ADD mysqld_charset.cnf /etc/mysql/conf.d/mysqld_charset.cnf
-ADD startup.sh /startup.sh
+ADD mysql_startup.sh /mysql_startup.sh
 
 RUN chmod 755 /*.sh
-ONBUILD RUN /startup.sh
 
 # Exposed ENV
 #ENV MYSQL_PASS **Random**
 
-EXPOSE 22 80 3306
+EXPOSE 80 3306
 
 CMD ["/usr/bin/supervisord", "-n"]
