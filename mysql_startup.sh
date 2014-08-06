@@ -9,7 +9,7 @@ if [ ! -f /var/lib/mysql/ibdata1 ]; then
     /usr/bin/mysqld_safe &
     sleep 10s
 
-    echo "GRANT ALL PRIVILEGES ON *.* TO 'admin'@'%' IDENTIFIED BY 'changeme'; FLUSH PRIVILEGES" | mysql
+    echo "GRANT ALL PRIVILEGES ON *.* TO 'admin'@'%' IDENTIFIED BY 'test'; FLUSH PRIVILEGES" | mysql
 
     killall mysqld
     sleep 10s
