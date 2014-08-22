@@ -21,11 +21,11 @@ RUN chmod 755 /packages.sh
 RUN /packages.sh
 RUN rm -f /packages.sh
 
-# install php53
-ADD ./root/packages_php53.sh /packages_php53.sh
-RUN chmod 755 /packages_php53.sh
-RUN /packages_php53.sh
-RUN rm -f /packages_php53.sh
+# install php55
+ADD ./root/packages_php55.sh /packages_php55.sh
+RUN chmod 755 /packages_php55.sh
+RUN /packages_php55.sh
+RUN rm -f /packages_php55.sh
 
 # middleware settings
 ADD ./root/etc/supervisord.conf /etc/supervisord.conf
