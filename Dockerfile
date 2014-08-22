@@ -26,7 +26,7 @@ ADD ./root/etc/supervisord.conf /etc/supervisord.conf
 RUN echo "NETWORKING=yes" > /etc/sysconfig/network
 
 # Remove pre-installed database
-RUN rm -rf /var/lib/mysql/*
+#RUN rm -rf /var/lib/mysql/*
 ADD mysqld_charset.cnf /etc/mysql/conf.d/mysqld_charset.cnf
 ADD mysql_startup.sh /mysql_startup.sh
 
