@@ -4,6 +4,8 @@ FROM centos:centos6
 # using epel
 RUN rpm -Uvh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
 RUN rpm -Uvh http://rpms.famillecollet.com/enterprise/remi-release-6.rpm 
+RUN rpm -Uvh http://mirror.webtatic.com/yum/el6/latest.rpm
+Run yum -y update
 
 # install supervisor
 RUN yum install -y wget
@@ -19,19 +21,27 @@ RUN chmod 755 /packages.sh
 RUN /packages.sh
 RUN rm -f /packages.sh
 
+# install php53
+ADD ./root/packages_php53.sh /packages_php53.sh
+RUN chmod 755 /packages_php53.sh
+RUN /packages_php53.sh
+RUN rm -f /packages_php53.sh
+
 # middleware settings
 ADD ./root/etc/supervisord.conf /etc/supervisord.conf
 
 # MySQL
 RUN echo "NETWORKING=yes" > /etc/sysconfig/network
-
 # Remove pre-installed database
 #RUN rm -rf /var/lib/mysql/*
 ADD mysqld_charset.cnf /etc/mysql/conf.d/mysqld_charset.cnf
 ADD mysql_startup.sh /mysql_startup.sh
 
-RUN chmod 755 /*.sh
+# Add Configs
+ADD ./root/etc/httpd/conf/httpd.conf /etc/httpd/conf/httpd.conf
+ADD ./root/etc/php.ini /etc/php.ini
 
+RUN chmod 755 /*.sh
 # Exposed ENV
 #ENV MYSQL_PASS **Random**
 
