@@ -19,13 +19,11 @@ RUN yum -y --enablerepo=remi install mysql-server mysql
 ADD ./root/packages.sh /packages.sh
 RUN chmod 755 /packages.sh
 RUN /packages.sh
-RUN rm -f /packages.sh
 
 # install php55
 ADD ./root/packages_php55.sh /packages_php55.sh
 RUN chmod 755 /packages_php55.sh
 RUN /packages_php55.sh
-RUN rm -f /packages_php55.sh
 
 # middleware settings
 ADD ./root/etc/supervisord.conf /etc/supervisord.conf
